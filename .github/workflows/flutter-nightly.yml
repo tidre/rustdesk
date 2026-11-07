@@ -8,6 +8,9 @@ on:
 
 jobs:
   run-flutter-nightly-build:
+    # Forks default to a read-only token; the build publishes the nightly release.
+    permissions:
+      contents: write
     uses: ./.github/workflows/flutter-build.yml
     secrets: inherit
     with:
