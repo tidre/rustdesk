@@ -2507,6 +2507,13 @@ pub fn rustdesk_interval(i: Interval) -> ThrottledInterval {
 }
 
 pub fn load_custom_client() {
+    // RemoteFix: built-in name and defaults, applied where custom clients get theirs.
+    *config::APP_NAME.write().unwrap() = "RemoteFix".to_owned();
+    // Favor latency over sharpness on bad links. The user can still change it.
+    config::DEFAULT_DISPLAY_SETTINGS
+        .write()
+        .unwrap()
+        .insert(keys::OPTION_IMAGE_QUALITY.to_owned(), "low".to_owned());
     #[cfg(debug_assertions)]
     if let Ok(data) = std::fs::read_to_string("./custom.txt") {
         read_custom_client(data.trim());

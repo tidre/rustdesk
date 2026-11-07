@@ -37,13 +37,8 @@ class PeerTabModel with ChangeNotifier {
     IconFont.addressBook,
     IconFont.deviceGroupFill,
   ];
-  List<bool> isEnabled = List.from([
-    true,
-    true,
-    !isWeb && bind.mainGetLocalOption(key: "disable-discovery-panel") != "Y",
-    !(bind.isDisableAb() || bind.isDisableAccount()),
-    !(bind.isDisableGroupPanel() || bind.isDisableAccount()),
-  ]);
+  // RemoteFix: home screen shows only recent sessions.
+  List<bool> isEnabled = List.from([true, false, false, false, false]);
   final List<bool> _isVisible = List.filled(maxTabCount, true, growable: false);
   List<bool> get isVisibleEnabled => () {
         final list = _isVisible.toList();

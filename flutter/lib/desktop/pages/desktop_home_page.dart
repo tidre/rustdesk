@@ -360,7 +360,7 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                       if (!bind.isDisableSettings())
                         InkWell(
                           child: Tooltip(
-                            message: translate('Change Password'),
+                            message: translate('Set permanent password'),
                             child: Obx(
                               () => Icon(
                                 Icons.edit,
@@ -371,8 +371,8 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                               ).marginOnly(right: 8, top: 4),
                             ),
                           ),
-                          onTap: () => DesktopSettingPage.switch2page(
-                              SettingsTabKey.safety),
+                          // RemoteFix: set the unattended-access password right here.
+                          onTap: () => setPasswordDialog(),
                           onHover: (value) => editHover.value = value,
                         ),
                     ],
